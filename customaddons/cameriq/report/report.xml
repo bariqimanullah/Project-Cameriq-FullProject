@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="report_barang_xlsx" model="ir.actions.report">
+        <field name="name">Barang Excel</field>
+        <field name="model">cameriq.barang</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">cameriq.report_barang_xlsx</field>
+        <field name="report_file">cameriq.report_barang_xlsx</field>
+        <field name="binding_model_id" ref="model_cameriq_barang"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="wizard_transaksireport_pdf" model="ir.actions.report">
+        <field name="name">Print Report Transaksi</field>
+        <field name="model">cameriq.transaksireport</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cameriq.wizard_transaksireport_pdf_tmp</field>
+        <field name="report_file">cameriq.wizard_transaksireport_pdf_tmp</field>
+        <field name="binding_model_id" ref="model_cameriq_transaksireport"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="wizard_barangreport_pdf" model="ir.actions.report">
+        <field name="name">Print Report Barang</field>
+        <field name="model">cameriq.barangreport</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cameriq.wizard_barangreport_pdf_tmp</field>
+        <field name="report_file">cameriq.wizard_barangreport_pdf_tmp</field>
+        <field name="binding_model_id" ref="model_cameriq_barangreport"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_cameriq_pdf_transaksi" model="ir.actions.report">
+        <field name="name">Cameriq Transaksi Report (PDF)</field>
+        <field name="model">cameriq.transaksi</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cameriq.report_cameriq_pdf_transaksi</field>
+        <field name="report_file">cameriq.report_cameriq_pdf_transaksi</field>
+        <field name="binding_model_id" ref="model_cameriq_transaksi"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- cameriq.pegawai tree view -->
+    <record id="cameriq_pegawai_view_tree" model="ir.ui.view">
+        <field name="name">Pegawai</field>
+        <field name="model">cameriq.pegawai</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nama_pegawai"/>
+                <field name="no_telp"/>
+                <field name="no_id"/>
+                <field name="jenis_kelamin"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- cameriq.pegawai form view -->
+    <record id="model_name_view_form" model="ir.ui.view">
+        <field name="name">Form Pegawai</field>
+        <field name="model">cameriq.pegawai</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <div class="container">
+                        <div class="col">
+                            <div class="row">
+                                <field name="image_pegawai" widget="image" class="oe_avatar"/>
+                            </div>
+                            <div class="row">
+                                <group>
+                                    <field name="nama_pegawai"/>
+                                    <field name="no_telp"/>
+                                    <field name="no_id"/>
+                                    <field name="jenis_kelamin"/>
+                                    <field name="tgl_lahir"/>
+                                </group>
+                            </div>
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- cameriq.pegawai action window -->
+    <record id="cameriq_pegawai_action" model="ir.actions.act_window">
+        <field name="name">Daftar Pegawai</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cameriq.pegawai</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cameriq_barang,access.cameriq.barang,model_cameriq_barang,,1,1,1,1
+access_cameriq_kategori,access.cameriq.kategori,model_cameriq_kategori,,1,1,1,1
+access_cameriq_merk,access.cameriq.merk,model_cameriq_merk,,1,1,1,1
+access_cameriq_pegawai,access.cameriq.pegawai,model_cameriq_pegawai,,1,1,1,1
+access_cameriq_transaksi,access.cameriq.transaksi,model_cameriq_transaksi,,1,1,1,1
+access_cameriq_detailbarang,access.cameriq.detailbarang,model_cameriq_detailbarang,,1,1,1,1
+access_cameriq_updatebiaya,access.cameriq.updatebiaya,model_cameriq_updatebiaya,,1,1,1,1
+access_cameriq_updatestok,access.cameriq.updatestok,model_cameriq_updatestok,,1,1,1,1
+access_cameriq_transaksireport,access.cameriq.transaksireport,model_cameriq_transaksireport,,1,1,1,1
+access_cameriq_barangreport,access.cameriq.barangreport,model_cameriq_barangreport,,1,1,1,1

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="wizard_barangreport_pdf_tmp">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <h1><b>Report Barang Cameriq</b></h1>
+                    <div class="row">
+                        <div class="col">Nama Kategori : <t t-esc="form['kategori_id'][1]"/></div>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <span>Nama Barang</span>
+                                </th>
+                                <th>
+                                    <span>Kode Barang</span>
+                                </th>
+                                <th>
+                                    <span>Merk</span>
+                                </th>
+                                <th>
+                                    <span>Jumlah Barang</span>
+                                </th>
+                                <th>
+                                    <span>Biaya Sewa</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <t t-foreach="barangxx" t-as="line">
+                            <tr>
+                                <td>
+                                    <span t-esc="line['nama_barang']"/>
+                                </td>
+                                <td>
+                                    <span t-esc="line['kode_barang']"/>
+                                </td>
+                                <td>
+                                    <span t-esc="line['merk_id'][1]"/>
+                                </td>
+                                <td>
+                                    <span t-esc="line['jumlah_barang']"/>
+                                </td>
+                                <td>
+                                    Rp. <span t-esc="line['biaya_sewa']"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                    <div class="row">
+                        <div class="col">Laporan dibuat pada <t t-esc="form['tgl_report']"/></div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

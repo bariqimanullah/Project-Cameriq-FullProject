@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="barangreport_wizard_view_form" model="ir.ui.view">
+        <field name="name">barangreport_wizard_view_form</field>
+        <field name="model">cameriq.barangreport</field>
+        <field name="arch" type="xml">
+            <form string="barangreport_wizard_form">
+                <group>
+                    <field name="kategori_id"/>
+                </group>
+                <footer>
+                    <button name="action_barang_report" type="object" string="Print Report" class="btn btn-primary"/>
+                    <button special="cancel" string="Cancel" class="btn btn-danger"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+   <record id="barangreport_wizard_action" model="ir.actions.act_window">
+       <field name="name">Print Report Barang (PDF)</field>
+       <field name="type">ir.actions.act_window</field>
+       <field name="res_model">cameriq.barangreport</field>
+       <field name="view_mode">form</field>
+       <field name="view_id" ref="barangreport_wizard_view_form"/>
+       <field name="target">new</field>
+   </record>
+   
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="barangreport_wizard_menu_action"
+              name="Report Barang"
+              parent="cameriq_report_menu_categ"
+              action="barangreport_wizard_action"
+              sequence="20"/>
+</odoo>

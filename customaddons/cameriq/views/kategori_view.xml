@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- cameriq.kategori tree view -->
+    <record id="cameriq_kategori_view_tree" model="ir.ui.view">
+        <field name="name">Daftar Kategori</field>
+        <field name="model">cameriq.kategori</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nama_kategori"/>
+                <field name="jumlah_item"/>
+                <field name="jumlah_merk"/>
+            </tree>
+        </field>
+    </record>
+    
+    <!-- cameriq.kategori form view -->
+    <record id="cameriq_kategori_view_form" model="ir.ui.view">
+        <field name="name">Form Kategori</field>
+        <field name="model">cameriq.kategori</field>
+        <field name="arch" type="xml">
+            <form string="Form Kategori">
+                <sheet>
+                    <group>
+                        <field name="nama_kategori"/>
+                    </group>
+                    <group name="merk" string="Merk">
+                        <field name="merk_ids">
+                            <tree editable='bottom'>
+                                <field name="nama_merk"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group name="item" string="List Item">
+                        <field name="barang_ids" readonly="1">
+                            <tree>
+                                <field name="nama_barang"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- res.partner search view -->
+    <record id="res_partner_person_inherit_search" model="ir.ui.view">
+        <field name="name">Search</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <filter name="person" string="Person" domain="[('is_company', '=', False)]" />
+                <filter name="member" string="Membership" domain="[('is_membership', '=', True)]" />
+            </field>
+        </field>
+    </record>
+
+    <!-- cameriq.kategori action window -->
+    <record id="cameriq_kategori_action" model="ir.actions.act_window">
+        <field name="name">Kategori Barang</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cameriq.kategori</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="cameriq_kategori_menu_act" 
+              name="Kategori" 
+              parent="cameriq_barang_menu_categ" 
+              action="cameriq_kategori_action" 
+              sequence="10"/>
+
+</odoo>

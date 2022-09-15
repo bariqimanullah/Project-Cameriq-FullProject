@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
+    <menuitem id="cameriq_menu_root" name="Cameriq" sequence="10"/>
+
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="cameriq_barang_menu_categ" name="Barang" parent="cameriq_menu_root" sequence="10"/>
+
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="cameriq_pegawai_menu_categ" name="Pegawai" parent="cameriq_menu_root" sequence="20" action="cameriq_pegawai_action"/>
+
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="cameriq_client_menu_categ" name="Client" parent="cameriq_menu_root" sequence="30" action="cameriq_client_action"/>
+
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="cameriq_transaksi_menu_categ" name="Transaksi" parent="cameriq_menu_root" sequence="40"/>
+
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="cameriq_wizard_menu_categ" name="Action" parent="cameriq_menu_root" sequence="50"/>
+
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="cameriq_report_menu_categ" name="Report" parent="cameriq_menu_root" sequence="60"/>
+
+</odoo>

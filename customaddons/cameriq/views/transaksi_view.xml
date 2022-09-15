@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- cameriq.transaksi tree view -->
+    <record id="cameriq_transaksi_view_tree" model="ir.ui.view">
+        <field name="name">Transaksi</field>
+        <field name="model">cameriq.transaksi</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="client_name"/>
+                <field name="client_phone"/>
+                <field name="tgl_akhirsewa"/>
+                <field name="total_bayar"/>
+                <field name="state" widget="badge" 
+                       decoration-success="state == 'done'"
+                       decoration-warning="state == 'onprocess'"
+                       decoration-danger="state == 'canceled'"
+                       decoration-muted="state == 'draft'"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- cameriq.transaksi form view -->
+    <record id="cameriq_transaksi_view_form" model="ir.ui.view">
+        <field name="name">Form Transaksi</field>
+        <field name="model">cameriq.transaksi</field>
+        <field name="arch" type="xml">
+            <form string="Form Transaksi">
+                <header>
+                    <button name="action_onprocess" type="object" string="Process" class="btn btn-primary" states="draft"/>
+                    <button name="action_done" type="object" string="Done" class="btn btn-primary" states="onprocess"/>
+                    <button name="action_cancel" type="object" string="Cancel" class="btn btn-danger" states="onprocess" confirm="Anda yakin melakukan proses cancel?"/>
+                    <button name="action_draft" type="object" string="Kembali ke Draft" class="btn btn-warning" states="canceled" confirm="Apakah anda ingin melakukan edit data?"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,onprocess,done"/>
+                </header>
+                <sheet>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <group name="client" string="Client">
+                                    <h1>
+                                        <field name="client_id" domain="[('is_company', '=', False)]" attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                                    </h1>
+                                </group>
+                            </div>
+                            <div class="col">
+                                <field name="client_image" widget="image" class="oe_avatar" attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                            </div>
+                        </div>
+                        <div>
+                            <group>
+                                <group name="detail_client" string="Detail Client">
+                                    <field name="client_name"/>
+                                    <field name="client_phone"/>
+                                    <field name="client_mobile"/>
+                                    <field name="client_email"/>
+                                    <field name="client_address"/>
+                                    <field name="client_jenisid"/>
+                                    <field name="client_no_id"/>
+                                </group>
+                                <group name="detail_transaksi" string="Transaksi">
+                                    <field name="kode_transaksi" attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                                    <field name="tgl_transaksi" attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                                    <field name="tgl_sewa" attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                                    <field name="tgl_akhirsewa" attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                                    <field name="lama_sewa" attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                                    <field name="total_bayar" attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                                </group>
+                            </group>
+                            <group name="detail_item" string="Detail Item">
+                                <field name="detailbarang_ids" attrs="{'readonly' : [('state', '!=', 'draft')]}">
+                                    <tree editable='bottom'>
+                                        <field name="kategori_id"/>
+                                        <field name="barang_id" domain="[('kategori_id', '=', kategori_id)]"/>
+                                        <field name="biaya_sewa"/>
+                                        <field name="jumlah"/>
+                                        <field name="subtotal" sum="Total"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="cameriq_transaksi_view_search" model="ir.ui.view">
+        <field name="name">Search</field>
+        <field name="model">cameriq.transaksi</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <filter name="draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                <filter name="onprocess" string="On Process" domain="[('state', '=', 'onprocess')]"/>
+                <filter name="done" string="Done" domain="[('state', '=', 'done')]"/>
+                <filter name="canceled" string="Canceled" domain="[('state', '=', 'canceled')]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- cameriq.transaksi action window -->
+    <record id="cameriq_transaksi_action" model="ir.actions.act_window">
+        <field name="name">Transaksi</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cameriq.transaksi</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="cameriq_transaksi_menu_act" 
+              name="Daftar transaksi" 
+              parent="cameriq_transaksi_menu_categ" 
+              action="cameriq_transaksi_action" 
+              sequence="10"/>
+
+</odoo>

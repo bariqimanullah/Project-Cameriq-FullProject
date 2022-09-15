@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="transaksireport_wizard_view_form" model="ir.ui.view">
+        <field name="name">transaksireport_wizard_view_form</field>
+        <field name="model">cameriq.transaksireport</field>
+        <field name="arch" type="xml">
+            <form string="transaksireport_wizard_form">
+                <group>
+                    <field name="client_id"/>
+                </group>
+                <group>
+                    <field name="from_date"/>
+                    <field name="to_date"/>
+                </group>
+                <footer>
+                    <button name="action_transaksi_report" type="object" string="Print Report" class="btn btn-primary"/>
+                    <button special="cancel" string="Cancel" class="btn btn-danger"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+   <record id="transaksireport_wizard_action" model="ir.actions.act_window">
+       <field name="name">Print Report Transaksi (PDF)</field>
+       <field name="type">ir.actions.act_window</field>
+       <field name="res_model">cameriq.transaksireport</field>
+       <field name="view_mode">form</field>
+       <field name="view_id" ref="transaksireport_wizard_view_form"/>
+       <field name="target">new</field>
+   </record>
+   
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="transaksireport_wizard_menu_action"
+              name="Report Transaksi"
+              parent="cameriq_report_menu_categ"
+              action="transaksireport_wizard_action"
+              sequence="10"/>
+</odoo>

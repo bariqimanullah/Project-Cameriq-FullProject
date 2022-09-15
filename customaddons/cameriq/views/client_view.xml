@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- res.partner inherit tree view -->
+    <record id="res_partner_client_view_tree_inherit" model="ir.ui.view">
+        <field name="name">Daftar Client</field>
+        <field name="model">res.partner</field>
+        <field name="mode">extension</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='phone']" position="after">
+                <field name="mobile"/>
+            </xpath>
+            <xpath expr="//field[@name='city']" position="before">
+                <field name="street" string="Address"/>
+            </xpath>
+            <xpath expr="//field[@name='vat']" position="attributes">
+                <attribute name="invisible">1</attribute>>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="invisible">1</attribute>>
+            </xpath>
+            <xpath expr="//field[@name='function']" position="attributes">
+                <attribute name="invisible">1</attribute>>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- res.partner inherit form view -->
+    <record id="res_partner_client_view_form_inherit" model="ir.ui.view">
+        <field name="name">Form Client</field>
+        <field name="model">res.partner</field>
+        <field name="mode">extension</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='function']" position="attributes">
+                <attribute name="invisible">1</attribute>>
+            </xpath>
+            <xpath expr="//field[@name='vat']" position="attributes">
+                <attribute name="invisible">1</attribute>>
+            </xpath>
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="jenis_id" attrs="{'invisible': [('is_company','=',True)]}"/>
+                <field name="no_id" attrs="{'invisible': [('is_company','=',True)]}"/>
+                <field name="is_membership" attrs="{'invisible': [('is_company','=',True)]}"/>
+                <field name="id_member" attrs="{'invisible': [('is_company','=',True)], 'invisible': [('is_membership','=',False)]}"/>
+                <field name="tgl_registrasi" attrs="{'invisible': [('is_company','=',True)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='website']" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_company','=',False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='category_id']" position="attributes">
+                <attribute name="invisible">1</attribute>>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- res.partner inherit search view -->
+    <record id="res_partner_person_inherit_search" model="ir.ui.view">
+        <field name="name">Person Search</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <filter name="person" string="Person" domain="[('is_company', '=', False)]" />
+                <filter name="member" string="Membership" domain="[('is_membership', '=', True)]" />
+            </field>
+        </field>
+    </record>
+
+    <!-- cameriq.client action window -->
+    <record id="cameriq_client_action" model="ir.actions.act_window">
+        <field name="name">Daftar Client</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">
+            {
+                'search_default_person':1,
+                'default_is_company':False
+            }
+        </field>
+    </record>
+
+</odoo>

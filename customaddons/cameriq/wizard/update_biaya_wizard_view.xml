@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <!-- model.name form view -->
+    <record id="updatebiaya_view_form_wizard" model="ir.ui.view">
+        <field name="name">Update Biaya</field>
+        <field name="model">cameriq.updatebiaya</field>
+        <field name="arch" type="xml">
+            <form string="Form Update Biaya">
+                <group>
+                    <field name="barang_id"/>
+                    <field name="biaya_sewa"/>
+                </group>
+                <footer>
+                    <button string="Update Biaya" name="button_updatebiaya" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel" class="btn btn-danger"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- model.name action window -->
+    <record id="updatebiaya_action_wizard" model="ir.actions.act_window">
+        <field name="name">Update Biaya Sewa</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cameriq.updatebiaya</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="updatebiaya_view_form_wizard"/>
+        <field name="target">new</field>
+    </record>
+    
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="updatebiaya_wizard_menu_act" 
+              name="Update Biaya Sewa" 
+              parent="cameriq_wizard_menu_categ" 
+              action="updatebiaya_action_wizard" 
+              sequence="10"/>
+
+</odoo>

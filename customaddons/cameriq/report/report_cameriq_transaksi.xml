@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_cameriq_pdf_transaksi">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <h1>Faktur Transaksi Cameriq</h1>
+                    <t t-foreach="docs" t-as="d">
+                        <div class="row">
+                            <div class="col-4">Kode Transaksi:</div>
+                            <div class="col-8"><span t-field="d.kode_transaksi"/></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Nama Client:</div>
+                            <div class="col-8"><span t-field="d.client_id.name"/></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Alamat:</div>
+                            <div class="col-8"><span t-field="d.client_id.street"/></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Phone:</div>
+                            <div class="col-8"><span t-field="d.client_id.phone"/></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Mobile:</div>
+                            <div class="col-8"><span t-field="d.client_id.mobile"/></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Email:</div>
+                            <div class="col-8"><span t-field="d.client_id.email"/></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Tanggal Transaksi:</div>
+                            <div class="col-8"><span t-field="d.tgl_transaksi"/></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Lama Sewa:</div>
+                            <div class="col-8"><span t-field="d.lama_sewa"/></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Tanggal Sewa:</div>
+                            <div class="col-8"><span t-field="d.tgl_sewa"/></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Tanggal Akhir Sewa:</div>
+                            <div class="col-8"><span t-field="d.tgl_akhirsewa"/></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Barang:</div>
+                            <div class="col-8">
+                                <t t-foreach="d.detailbarang_ids" t-as="ds">
+                                    <div class="col"><span t-field="ds.barang_id.nama_barang"/></div>
+                                    <div class="col"><span t-field="ds.biaya_sewa"/></div>
+                                    <div class="col"><span t-field="ds.jumlah"/></div>
+                                </t>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Total Pembayaran:</div>
+                            <div class="col-8"><span t-field="d.total_bayar"/></div>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

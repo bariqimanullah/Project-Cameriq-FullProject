@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- cameriq.barang tree view -->
+    <record id="cameriq_barang_view_tree" model="ir.ui.view">
+        <field name="name">Daftar Barang</field>
+        <field name="model">cameriq.barang</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nama_barang"/>
+                <field name="kode_barang"/>
+                <field name="kategori_id"/>
+                <field name="jumlah_barang"/>
+                <field name="biaya_sewa"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- cameriq.barang form view -->
+    <record id="cameriq_barang_view_form" model="ir.ui.view">
+        <field name="name">Form Barang</field>
+        <field name="model">cameriq.barang</field>
+        <field name="arch" type="xml">
+            <form string="Form Barang">
+                <header>
+                    <button string="Update Biaya Sewa" name="%(cameriq.updatebiaya_action_wizard)d" type="action" class="oe_highlight"/>
+                    <button string="Update Stok Barang" name="%(cameriq.updatestok_action_wizard)d" type="action" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="nama_barang"/>
+                        <field name="kode_barang"/>
+                        <field name="kategori_id"/>
+                        <field name="merk_id" domain="[('kategori_id', '=', kategori_id)]"/>
+                        <field name="jumlah_barang"/>
+                        <field name="biaya_sewa"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="cameriq_kategori_view_search" model="ir.ui.view">
+        <field name="name">Search</field>
+        <field name="model">cameriq.barang</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <filter name="kamera" string="Kamera" domain="[('kategori_id.nama_kategori', '=', 'Kamera')]"/>
+                <filter name="lensa" string="Lensa" domain="[('kategori_id.nama_kategori', '=', 'Lensa')]"/>
+                <filter name="audio" string="Audio" domain="[('kategori_id.nama_kategori', '=', 'Audio')]"/>
+                <filter name="memory" string="Memory Card" domain="[('kategori_id.nama_kategori', '=', 'Memory Card')]"/>
+                <filter name="barang_kosong" string="Barang Kosong" domain="[('jumlah_barang', '=', '0')]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- cameriq.barang action window -->
+    <record id="cameriq_barang_action" model="ir.actions.act_window">
+        <field name="name">Daftar Barang</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cameriq.barang</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="cameriq_barang_menu_act" 
+              name="Daftar Barang" 
+              parent="cameriq_barang_menu_categ" 
+              action="cameriq_barang_action" 
+              sequence="20"/>
+
+</odoo>

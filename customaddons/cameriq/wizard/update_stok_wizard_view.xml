@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <!-- model.name form view -->
+    <record id="updatestok_view_form_wizard" model="ir.ui.view">
+        <field name="name">Update Stok</field>
+        <field name="model">cameriq.updatestok</field>
+        <field name="arch" type="xml">
+            <form string="Form Update stok">
+                <group>
+                    <field name="barang_id"/>
+                    <field name="jumlah_stok"/>
+                </group>
+                <footer>
+                    <button string="Update Stok" name="button_updatestok" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel" class="btn btn-danger"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- model.name action window -->
+    <record id="updatestok_action_wizard" model="ir.actions.act_window">
+        <field name="name">Update Stok Barang</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cameriq.updatestok</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="updatestok_view_form_wizard"/>
+        <field name="target">new</field>
+    </record>
+    
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="updatestok_wizard_menu_act" 
+              name="Update Stok Barang" 
+              parent="cameriq_wizard_menu_categ" 
+              action="updatestok_action_wizard" 
+              sequence="20"/>
+
+</odoo>
